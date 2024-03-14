@@ -1,0 +1,27 @@
+---
+- name: Install MySQL 5.7 Repository
+  apt_repository:
+    name: mysql57-community
+    description: MySQL 5.7 Community Server
+    baseurl: "http://repo.mysql.com/yum/mysql-5.7-community/el/{{ ansible_distribution_major_version }}/$basearch/"
+    gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql"
+    gpgcheck: yes
+
+- name: Install MySQL Server
+  package:
+    name: mysql-community-server
+    state: present
+
+- name: Copy custom MySQL configuration file
+  copy:
+    src: /path/to/your/custom/my.cnf
+    dest: /etc/my.cnf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Start MySQL Service
+  service:
+    name: mysqld
+    state: started
+    enabled: yes

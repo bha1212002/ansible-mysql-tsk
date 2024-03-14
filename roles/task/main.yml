@@ -14,7 +14,7 @@
 
 - name: Copy custom MySQL configuration file
   copy:
-    src: /path/to/your/custom/my.cnf
+    src: /home/bhavik/custom/my.cnf
     dest: /etc/my.cnf
     owner: root
     group: root
